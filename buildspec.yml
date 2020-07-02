@@ -1,0 +1,13 @@
+version: 0.2
+phases:
+  install:
+    runtime-versions:
+      nodejs: 12
+    commands:
+      - npm install
+  build:
+    commands:
+      - npm run-script build
+  post_build:
+    commands:
+      - aws s3 cp build s3://devaws-web-app-react --recursive --acl public-read
